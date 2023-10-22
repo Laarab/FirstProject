@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Classroom index
+{% endblock %}
+
+{% block body %}
+	<h1>Classrooms :</h1>
+
+	<table border="1" class="table">
+		<thead>
+			<tr>
+				<th>Ref</th>
+				<th>Name</th>
+				<th>CreatedAt</th>
+				<th>Students</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for classroom in classrooms %}
+				<tr>
+					<td>{{ classroom.ref }}</td>
+					<td>{{ classroom.name }}</td>
+					<td>{{ classroom.createdAt ? classroom.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						{% for x in classroom.students %}
+							{{x.email}}
+							<br>
+						{% endfor %}
+					</td>
+
+
+					<td>
+						<a href="{{ path('app_classroom_show', {'ref': classroom.ref}) }}">Afficher</a>
+					</td>
+					<td>
+						<a href="{{ path('app_classroom_edit', {'ref': classroom.ref}) }}">Editer</a>
+					</td>
+					<td>
+						<a style="color: red;">Supprimer</a>
+					</td>
+				</tr>
+			</td>
+		</tbody>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="4">no records found</td>
+	</tr>
+{% endfor %}</tbody></table><a href="{{ path('app_classroom_new') }}">Ajouter</a>{% endblock %}

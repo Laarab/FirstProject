@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_classroom_delete', {'ref': classroom.ref}) }}" onsubmit="return confirm('Vous étes sur??');">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ classroom.ref) }}">
+	<button class="btn">Delete</button>
+</form>
